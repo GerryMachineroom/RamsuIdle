@@ -3,6 +3,7 @@ var automaticRamsusPerSecond = 0
 var ramsuFamilies = 0
 var ramsuRooms = 0
 var ramsuFarms = 0
+var costPerRamsuFamily = 5
 //start of game
 function startOfGame() {
   document.getElementById('ramsuFamily').style.display = 'none'
@@ -42,9 +43,14 @@ amountOfRamsuFamilies()
 //Increases automaticRamsusPerSecond by 1, therefore ramsus automatically go up by one each time the button 'Spawn Ramsu Family' is clicked.
 //Also prints the new value of ramsuFamilies onto the screen
 function spawnRamsuFamily() {
-  ramsuFamilies++
-  document.getElementById('ramsuFamily').innerHTML = 'Ramsu Families: ' + ramsuFamilies
-  automaticRamsusPerSecond++
+  if (ramsus < costPerRamsuFamily) {
+    confirm('You no have enoughs ramsus')
+  } else {
+    ramsuFamilies++
+    document.getElementById('ramsuFamily').innerHTML = 'Ramsu Families: ' + ramsuFamilies
+    ramsus -= 5
+    automaticRamsusPerSecond++
+  }
 }
 //----------------------------------------------------------------------------------------
 //constantly checks whether you reached the goal for ramsu rooms
